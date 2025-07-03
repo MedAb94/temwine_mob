@@ -53,27 +53,6 @@ class CustomTextField extends StatelessWidget {
             children: [
               Expanded(
                 child:
-                    //  keyboardType == TextInputType.multiline
-                    //     ? TextField(
-                    //         controller: controller,
-                    //         keyboardType: TextInputType.multiline,
-                    //         maxLines: 4,
-                    //         decoration: InputDecoration(
-                    //           //hintText: "Enter Remarks",
-                    //           // label: label != null ? Text(label!) : null,
-                    //           border: InputBorder.none,
-                    //           hintText: hint,
-                    //           // suffix: suffix,
-                    //           // contentPadding: EdgeInsets.only(
-                    //           //   left: 11.w,
-                    //           // ),
-                    //           hintStyle: TextStyle(
-                    //             fontSize: 17.sp,
-                    //             color: Color(0xff4D4D4D),
-                    //           ),
-                    //         ),
-                    //       )
-                    //     :
 
                     TextFormField(
                   controller: controller,

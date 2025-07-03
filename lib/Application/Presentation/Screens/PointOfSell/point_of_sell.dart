@@ -689,17 +689,22 @@ class OtpSMSField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextField(
       controller: controller,
-      isPassword: false,
       keyboardType: TextInputType.number,
       prefixIcon: Icons.lock,
-      // label: label,
       hint: AppLocalizations.of(context)!.sms,
-      // "SMS",
+      isPassword: true,  // Add this
+      isObscure: true,   // Add this
+      setObscure: () {   // Add this function
+        //  implement state management so the eye icon  work
+        // This is just a placeholder, you can implement your own logic
+        // to toggle the visibility of the OTP.
+        controller.text = controller.text; // This is just to trigger the change
+
+
+      },
       validator: (otp) => otp != null && otp.isNotEmpty && otp.length >= 4
           ? null
           : AppLocalizations.of(context)!.otp_not_valid,
-
-      // "Otp is invalid",
       onChanged: onChanged,
     );
   }
