@@ -10,9 +10,23 @@ import 'package:temwin_front_app/Application/Presentation/Widgets/Commons/common
 import 'package:temwin_front_app/Core/Navigation/go_router_navigation.dart';
 import 'package:temwin_front_app/Core/utils/app_assets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:temwin_front_app/Domain/entities/bnf_entity.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  final TextEditingController _nniController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nniController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +74,7 @@ class SettingsPage extends StatelessWidget {
             ),
           ],
         ),
-        body: Padding(
+        body: SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -176,6 +190,43 @@ class SettingsPage extends StatelessWidget {
                                 ],
                               ),
                             );
+                          },
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+                          controller: _nniController,
+                          keyboardType: TextInputType.number,
+                          maxLength: 10,
+                          decoration: InputDecoration(
+                            labelText:
+                                AppLocalizations.of(context)!.benef_nni,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        CommonButton(
+                          text: AppLocalizations.of(context)!.add,
+                          color: Colors.green,
+                          fn: () {
+                            final nni = _nniController.text.trim();
+                            if (nni.length == 10) {
+                              final existing =
+                                  context.read<UserCubit>().state?.beneficiaires ?? [];
+                              if (existing.any((e) => e.nni == nni)) {
+                                showSellDialog(
+                                    context,
+                                    [AppLocalizations.of(context)!.nni_already_exist],
+                                    true);
+                                return;
+                              }
+                              context
+                                  .read<UserCubit>()
+                                  .addBeneficiaire(beneficiaire: BnfEntity(nni: nni));
+                              _nniController.clear();
+                              showSellDialog(
+                                context,
+                                [AppLocalizations.of(context)!.nni_saved_success],
+                              );
+                            }
                           },
                         ),
                       ],

@@ -12,6 +12,7 @@ class PosModel extends PosEntity {
     super.localiteId,
     super.type,
     super.isActive,
+    super.hasRestrictedBenefs,
   });
 
   factory PosModel.fromJson(Map<String, dynamic> map) {
@@ -26,6 +27,7 @@ class PosModel extends PosEntity {
       localiteId: map['localite_id'] as String?,
       type: map['type'] as int?,
       isActive: map['isActive'] as int?,
+      hasRestrictedBenefs: map['has_restricted_benefs'] as bool?,
     );
   }
 
@@ -39,6 +41,7 @@ class PosModel extends PosEntity {
       "localite_id": localiteId,
       "isActive": isActive,
       "type": type,
+      "has_restricted_benefs": hasRestrictedBenefs,
     };
   }
 
@@ -54,6 +57,7 @@ class PosModel extends PosEntity {
       localiteId: posEntity.localiteId,
       type: posEntity.type,
       isActive: posEntity.isActive,
+      hasRestrictedBenefs: posEntity.hasRestrictedBenefs,
     );
   }
 }
