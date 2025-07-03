@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:temwin_front_app/Data/dataSources/Local/User/user_local_data_source.dart';
 import 'package:temwin_front_app/Domain/entities/user_data_entity.dart';
+import 'package:temwin_front_app/Domain/entities/bnf_entity.dart';
 
 class UserCubit extends Cubit<UserDataEntity?> {
   final UserLocalDataSource userLocalDataSource;
@@ -31,6 +32,12 @@ class UserCubit extends Cubit<UserDataEntity?> {
     UserDataEntity? newUser = await userLocalDataSource
         .updateUserProductsUsedQuota(storedSalesItems: storedSalesItems);
 
+    emit(newUser);
+  }
+
+  void addBeneficiaire({required BnfEntity beneficiaire}) async {
+    UserDataEntity? newUser =
+        await userLocalDataSource.addLocalBeneficiaire(beneficiaire: beneficiaire);
     emit(newUser);
   }
 }

@@ -27,6 +27,9 @@ class PosEntity extends Equatable {
   @HiveField(9)
   final int? isActive;
 
+  @HiveField(10)
+  final bool? hasRestrictedBenefs;
+
   const PosEntity({
     this.id,
     this.name,
@@ -38,6 +41,7 @@ class PosEntity extends Equatable {
     this.localiteId,
     this.type,
     this.isActive,
+    this.hasRestrictedBenefs,
   });
 
   @override
@@ -51,6 +55,7 @@ class PosEntity extends Equatable {
         communeId,
         localiteId,
         type,
-        isActive
+        isActive,
+        hasRestrictedBenefs
       ];
 }
