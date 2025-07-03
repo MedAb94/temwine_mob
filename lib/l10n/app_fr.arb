@@ -69,5 +69,10 @@
      "otp_not_valid" : "Le format du code OTP est invalide",
      "history":"Historique",
      "password_invalid": "Le format du mot de passe est invalide" ,
-     "phone_number_invalid": "Le format du numero est invalide"     
+  "phone_number_invalid": "Le format du numero est invalide",
+  "benef_nni": "NNI bénéficiaire",
+  "add": "Ajouter",
+  "nni_saved_success": "NNI enregistré avec succès",
+  "nni_already_exist": "NNI déjà enregistré",
+  "local_benef_title": "Ajouter un bénéficiaire local"
 }
