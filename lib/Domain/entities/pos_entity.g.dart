@@ -27,13 +27,14 @@ class PosEntityAdapter extends TypeAdapter<PosEntity> {
       localiteId: fields[7] as String?,
       type: fields[8] as int?,
       isActive: fields[9] as int?,
+      hasRestrictedBenefs: fields[10] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, PosEntity obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,7 +54,9 @@ class PosEntityAdapter extends TypeAdapter<PosEntity> {
       ..writeByte(8)
       ..write(obj.type)
       ..writeByte(9)
-      ..write(obj.isActive);
+      ..write(obj.isActive)
+      ..writeByte(10)
+      ..write(obj.hasRestrictedBenefs);
   }
 
   @override

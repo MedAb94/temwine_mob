@@ -2,14 +2,21 @@ import 'package:temwin_front_app/Data/models/pos_model.dart';
 import 'package:temwin_front_app/Data/models/product_model.dart';
 import 'package:temwin_front_app/Data/models/roles_model.dart';
 import 'package:temwin_front_app/Data/models/user_model.dart';
+import 'package:temwin_front_app/Data/models/bnf_model.dart';
 import 'package:temwin_front_app/Domain/entities/product_entity.dart';
 import 'package:temwin_front_app/Domain/entities/roles_entity.dart';
 import 'package:temwin_front_app/Domain/entities/user_data_entity.dart';
 import 'package:temwin_front_app/Domain/entities/user_entity.dart';
+import 'package:temwin_front_app/Domain/entities/bnf_entity.dart';
 
 class UserDataModel extends UserDataEntity {
-  const UserDataModel(
-      {super.user, super.accessToken, super.tokenType, super.products});
+  const UserDataModel({
+    super.user,
+    super.accessToken,
+    super.tokenType,
+    super.products,
+    super.beneficiaires,
+  });
 
   factory UserDataModel.fromJson(Map<String, dynamic> map) {
     return UserDataModel(
@@ -19,6 +26,10 @@ class UserDataModel extends UserDataEntity {
       products: map['products'] != null
           ? List<ProductsEntity>.from(
               map['products'].map((x) => ProductsModel.fromJson(x)))
+          : null,
+      beneficiaires: map['beneficiaires'] != null
+          ? List<BnfEntity>.from(
+              map['beneficiaires'].map((x) => BnfModel.fromJson(x)))
           : null,
     );
   }
@@ -33,6 +44,9 @@ class UserDataModel extends UserDataEntity {
       "products": products
           ?.map((e) => ProductsModel.fromEntity(productEntity: e).toJson())
           .toList(),
+      "beneficiaires": beneficiaires
+          ?.map((e) => BnfModel.fromEntity(bnfEntity: e).toJson())
+          .toList(),
     };
   }
 
@@ -41,6 +55,7 @@ class UserDataModel extends UserDataEntity {
         accessToken: userDataEntity.accessToken,
         tokenType: userDataEntity.tokenType,
         user: userDataEntity.user,
-        products: userDataEntity.products);
+        products: userDataEntity.products,
+        beneficiaires: userDataEntity.beneficiaires);
   }
 }
