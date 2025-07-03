@@ -71,8 +71,5 @@
    "password_invalid": "تنسيق كلمة المرور غير صالح",
   "phone_number_invalid": "تنسيق رقم الهاتف غير صالح"
  ,"benef_nni": "رقم المستفيد"
-  ,"add": "إضافة",
-  "nni_saved_success": "تم حفظ رقم المستفيد بنجاح",
-  "nni_already_exist": "رقم المستفيد محفوظ مسبقًا",
+ ,"add": "إضافة"
 }
-
