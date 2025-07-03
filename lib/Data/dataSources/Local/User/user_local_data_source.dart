@@ -1,6 +1,7 @@
 import 'package:temwin_front_app/Core/utils/hive_boxes.dart';
 import 'package:temwin_front_app/Core/utils/hive_init_helper.dart';
 import 'package:temwin_front_app/Domain/entities/product_entity.dart';
+import 'package:temwin_front_app/Domain/entities/bnf_entity.dart';
 
 import 'package:temwin_front_app/Domain/entities/user_data_entity.dart';
 
@@ -13,6 +14,8 @@ abstract class UserLocalDataSource {
 
   Future<UserDataEntity?> updateUserProductsUsedQuota(
       {required Map<int, num> storedSalesItems});
+
+  Future<UserDataEntity?> addLocalBeneficiaire({required BnfEntity beneficiaire});
 
   Future<void> clearUser();
 }
@@ -65,6 +68,25 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
     }
 
     userDataEntity = userDataEntity.copyWith(products: newProducts);
+
+    return userDataEntity;
+  }
+
+  @override
+  Future<UserDataEntity?> addLocalBeneficiaire(
+      {required BnfEntity beneficiaire}) async {
+    UserDataEntity? userDataEntity = await hiveHelper.getData<UserDataEntity>(
+        boxName: HiveBox.USER_DATA_BOX);
+
+    if (userDataEntity == null) return null;
+
+    List<BnfEntity> oldBenfs = userDataEntity.beneficiaires ?? [];
+    oldBenfs.add(beneficiaire);
+
+    userDataEntity = userDataEntity.copyWith(beneficiaires: oldBenfs);
+
+    await hiveHelper.storeData<UserDataEntity>(
+        object: userDataEntity, boxName: HiveBox.USER_DATA_BOX);
 
     return userDataEntity;
   }

@@ -69,5 +69,7 @@
    "otp_not_valid" : "تنسيق رمز OTP غير صالح",
    "history":"السجل",
    "password_invalid": "تنسيق كلمة المرور غير صالح",
-   "phone_number_invalid": "تنسيق رقم الهاتف غير صالح"
+  "phone_number_invalid": "تنسيق رقم الهاتف غير صالح"
+ ,"benef_nni": "رقم المستفيد"
+ ,"add": "إضافة"
 }

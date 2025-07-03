@@ -21,13 +21,14 @@ class UserDataEntityAdapter extends TypeAdapter<UserDataEntity> {
       accessToken: fields[1] as String?,
       tokenType: fields[2] as String?,
       products: (fields[3] as List?)?.cast<ProductsEntity>(),
+      beneficiaires: (fields[4] as List?)?.cast<BnfEntity>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserDataEntity obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.user)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class UserDataEntityAdapter extends TypeAdapter<UserDataEntity> {
       ..writeByte(2)
       ..write(obj.tokenType)
       ..writeByte(3)
-      ..write(obj.products);
+      ..write(obj.products)
+      ..writeByte(4)
+      ..write(obj.beneficiaires);
   }
 
   @override
